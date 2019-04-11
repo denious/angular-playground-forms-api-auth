@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IIdentityClaims, OAuthActions } from '@phx/auth';
+import { AuthenticationService } from '@phx/auth';
+import { IIdentityClaims } from '../iidentityclaims';
 
 @Component({
   selector: 'app-navigation',
@@ -18,14 +19,14 @@ export class NavigationComponent {
       map(result => result.matches)
     );
 
-  constructor(private breakpointObserver: BreakpointObserver, private oauthActions: OAuthActions) { }
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthenticationService) { }
 
   public logoff() {
-    this.oauthActions.logOut();
+    this.authService.logOut();
   }
 
   public get name() {
-    const claims = this.oauthActions.getIdentityClaims();
+    const claims = this.authService.getIdentityClaims();
     if (!claims) return null;
     const b2cclaims = <IIdentityClaims>claims;
     return b2cclaims.given_name + ' ' + b2cclaims.family_name;

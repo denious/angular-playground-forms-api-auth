@@ -1,9 +1,4 @@
-import { Injectable } from '@angular/core';
-
-@Injectable({
-    providedIn: 'root',
-})
-export class OAuthConfig {
+export interface IAuthenticationServiceConfig {
     issuer: string;
     loginUrl: string;
     redirectUri: string;

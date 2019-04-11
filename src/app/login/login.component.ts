@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { OAuthActions } from '@phx/auth';
+import { AuthenticationService } from '@phx/auth';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +9,12 @@ import { OAuthActions } from '@phx/auth';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private oauthActions: OAuthActions) { }
+  constructor(private route: ActivatedRoute, private authService: AuthenticationService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       const callbackUrl = params.callbackUrl || '/';
-      this.oauthActions.initImplicitFlow(callbackUrl);
+      this.authService.initImplicitFlow(callbackUrl);
     });
   }
 }

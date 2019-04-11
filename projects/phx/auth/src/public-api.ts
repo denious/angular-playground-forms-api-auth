@@ -2,8 +2,6 @@
  * Public API Surface of auth
  */
 
-export * from './lib/auth.module';
-export * from './lib/auth.guard';
-export * from './lib/iidentityclaims';
-export * from './lib/oauth-actions';
-export * from './lib/oauth-confg';
+export * from './lib/authentication.guard';
+export * from './lib/authentication-service';
+export * from './lib/iauthentication-service-config';

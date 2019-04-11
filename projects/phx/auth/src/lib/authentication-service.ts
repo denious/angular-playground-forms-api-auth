@@ -1,15 +1,15 @@
-import { OAuthConfig } from './oauth-confg';
-import { OAuthService, AuthConfig, NullValidationHandler, OAuthSuccessEvent, OAuthErrorEvent } from 'angular-oauth2-oidc';
+import { OAuthService, AuthConfig, NullValidationHandler, OAuthErrorEvent } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
 import { Injectable, Inject } from '@angular/core';
+import { IAuthenticationServiceConfig } from './iauthentication-service-config';
 
 @Injectable({
     providedIn: 'root',
 })
-export class OAuthActions {
-    oauthConfig: OAuthConfig;
+export class AuthenticationService {
+    oauthConfig: IAuthenticationServiceConfig;
 
-    constructor(@Inject('OAuthConfig') oauthConfig: OAuthConfig, private oauthService: OAuthService, private router: Router) {
+    constructor(@Inject('IAuthenticationServiceConfig') oauthConfig: IAuthenticationServiceConfig, private oauthService: OAuthService, private router: Router) {
         this.oauthConfig = oauthConfig;
     }
 
@@ -37,12 +37,9 @@ export class OAuthActions {
             switch (e.type) {
                 case "token_received": {
 
-                    // cast event
-                    const tokenReceived = <OAuthSuccessEvent>e;
-
                     // redirect user to originally requested URL
-                    if (tokenReceived.info.state)
-                        this.router.navigate([tokenReceived.info.state]);
+                    if (this.oauthService.state)
+                        this.router.navigate([this.oauthService.state]);
 
                     break;
                 }

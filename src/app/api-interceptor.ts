@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { OAuthActions } from 'projects/phx/auth/src/public-api';
+import { AuthenticationService } from 'projects/phx/auth/src/public-api';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
-    constructor(private oauthActions: OAuthActions) { }
+    constructor(private oauthActions: AuthenticationService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 

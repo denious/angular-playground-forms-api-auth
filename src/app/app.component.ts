@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { OAuthActions } from 'projects/phx/auth/src/public-api';
+import { AuthenticationService } from '@phx/auth';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { OAuthActions } from 'projects/phx/auth/src/public-api';
 export class AppComponent {
   title = 'Dev Forms project';
 
-  constructor(private oauthActions: OAuthActions) {
-    oauthActions.configureAuth();
+  constructor(private authService: AuthenticationService) {
+    authService.configureAuth();
   }
 }

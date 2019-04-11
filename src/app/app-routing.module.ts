@@ -5,7 +5,7 @@ import { FirstFormComponent } from './first-form/first-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SecondFormComponent } from './second-form/second-form.component';
 import { UomsComponent } from './uoms/uoms.component';
-import { AuthGuard } from '@phx/auth';
+import { AuthenticationGuard } from '@phx/auth';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'first', component: FirstFormComponent },
   { path: 'second', component: SecondFormComponent },
-  { canActivate: [AuthGuard], path: 'uoms', component: UomsComponent },
+  { canActivate: [AuthenticationGuard], path: 'uoms', component: UomsComponent },
   { path: '', component: HomeComponent },
   { path: '**', component: NotFoundComponent }
 ];
