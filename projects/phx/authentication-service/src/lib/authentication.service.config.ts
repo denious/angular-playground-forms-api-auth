@@ -1,4 +1,4 @@
-export interface IAuthenticationServiceConfig {
+export interface AuthenticationServiceConfig {
     issuer: string;
     loginUrl: string;
     redirectUri: string;

@@ -5,7 +5,7 @@ import { FirstFormComponent } from './first-form/first-form.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SecondFormComponent } from './second-form/second-form.component';
 import { UomsComponent } from './uoms/uoms.component';
-import { AuthenticationGuard } from '@phx/auth';
+import { AuthenticationGuard } from '@phx/authentication-service';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [

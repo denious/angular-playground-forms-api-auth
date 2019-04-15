@@ -1,0 +1,9 @@
+{
+  "name": "@phx/authentication-service",
+  "version": "7.0.2",
+  "peerDependencies": {
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "angular-oauth2-oidc": "^5.0.2"
+  }
+}

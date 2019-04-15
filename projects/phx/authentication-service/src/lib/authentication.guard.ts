@@ -2,16 +2,16 @@ import { Injectable, Inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { IAuthenticationServiceConfig } from './iauthentication-service-config';
+import { AuthenticationServiceConfig } from './authentication.service.config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate {
 
-  oauthConfig: IAuthenticationServiceConfig;
+  oauthConfig: AuthenticationServiceConfig;
 
-  constructor(private router: Router, private authService: OAuthService, @Inject('IAuthenticationServiceConfig') oauthConfig: IAuthenticationServiceConfig) {
+  constructor(private router: Router, private authService: OAuthService, @Inject('AuthenticationServiceConfig') oauthConfig: AuthenticationServiceConfig) {
     this.oauthConfig = oauthConfig;
   }
 

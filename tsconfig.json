@@ -19,11 +19,11 @@
       "dom"
     ],
     "paths": {
-      "@phx/auth": [
-        "dist/phx/auth"
+      "@phx/authentication-service": [
+        "dist/phx/authentication-service"
       ],
-      "@phx/auth/*": [
-        "dist/phx/auth/*"
+      "@phx/authentication-service/*": [
+        "dist/phx/authentication-service/*"
       ]
     }
   }

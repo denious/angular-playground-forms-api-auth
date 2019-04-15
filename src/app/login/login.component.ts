@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AuthenticationService } from '@phx/auth';
+import { AuthenticationService } from '@phx/authentication-service';
 
 @Component({
   selector: 'app-login',
