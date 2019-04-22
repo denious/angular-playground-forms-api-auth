@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, BrowserTransferStateModule } from '@angular/platform-browser';
 import { NgModule, Provider, forwardRef } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,14 +15,12 @@ import { ApiModule } from './api/api.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AttributesService } from './api/services';
 import { UomsComponent } from './uoms/uoms.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api-interceptor';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
 import { AuthenticationServiceConfig } from '@phx/authentication-service';
-import { CommonModule } from '@angular/common';
-import { TransferHttpCacheModule } from '@nguniversal/common';
-import { NgtUniversalModule } from '@ng-toolkit/universal';
+import { AppModule } from './app.module';
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -31,18 +29,8 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
 };
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    FirstFormComponent,
-    HomeComponent,
-    NavigationComponent,
-    NotFoundComponent,
-    SecondFormComponent,
-    UomsComponent,
-    LoginComponent
-  ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -59,10 +47,8 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     ReactiveFormsModule,
     OAuthModule.forRoot(),
     ApiModule.forRoot({ rootUrl: environment.api.rootUrl }),
-    CommonModule,
-    TransferHttpCacheModule,
-    HttpClientModule,
-    NgtUniversalModule
+    AppModule,
+    BrowserTransferStateModule
   ],
   providers: [
     ApiInterceptor,
@@ -75,4 +61,4 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppBrowserModule { }

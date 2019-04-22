@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -11,7 +11,7 @@ export class AuthenticationGuard implements CanActivate {
 
   oauthConfig: AuthenticationServiceConfig;
 
-  constructor(private router: Router, private authService: OAuthService, @Inject('AuthenticationServiceConfig') oauthConfig: AuthenticationServiceConfig) {
+  constructor(private authService: OAuthService, @Inject('AuthenticationServiceConfig') oauthConfig: AuthenticationServiceConfig) {
     this.oauthConfig = oauthConfig;
   }
 
@@ -20,7 +20,9 @@ export class AuthenticationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (!this.authService.hasValidAccessToken()) {
-      this.router.navigate([this.oauthConfig.onLoginUrl], { queryParams: { callbackUrl: state.url } });
+      const callbackUrl = state.url;
+      this.authService.initImplicitFlow(callbackUrl);
+      //this.router.navigate([this.oauthConfig.onLoginUrl], { queryParams: { callbackUrl: state.url } });
       return false;
     }
 
