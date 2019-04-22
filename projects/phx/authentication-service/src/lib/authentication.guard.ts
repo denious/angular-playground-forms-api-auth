@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -22,7 +22,7 @@ export class AuthenticationGuard implements CanActivate {
     if (!this.authService.hasValidAccessToken()) {
       const callbackUrl = state.url;
       this.authService.initImplicitFlow(callbackUrl);
-      //this.router.navigate([this.oauthConfig.onLoginUrl], { queryParams: { callbackUrl: state.url } });
+
       return false;
     }
 
