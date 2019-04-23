@@ -1,24 +1,59 @@
-# AuthenticationService
-
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
-
-## Code scaffolding
-
-Run `ng generate component component-name --project authentication-service` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project authentication-service`.
-> Note: Don't forget to add `--project authentication-service` or else it will be added to the default project in your `angular.json` file. 
-
-## Build
-
-Run `ng build authentication-service` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build authentication-service`, go to the dist folder `cd dist/authentication-service` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test authentication-service` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+1. 	npm install --save @phx/authentication-service
+2.	Configure environments (modify to fit your project needs):
+    ```ts
+	auth: {
+		issuer: 'https://phenomenexb2c.b2clogin.com/964b7d74-24a3-4446-9a32-5c58d965b7b2/v2.0/',
+		loginUrl: 'https://PhenomenexB2C.b2clogin.com/PhenomenexB2C.onmicrosoft.com/oauth2/v2.0/authorize',
+		redirectUri: 'http://localhost:4200',
+		onLoginUrl: '/login',
+		onErrorRedirectUrl: '/',
+		silentRefreshRedirectUri: 'http://localhost:4200/assets/silent-refresh.html',
+		clientId: '{B2C application ID}',
+		scope: 'https://PhenomenexB2C.onmicrosoft.com/{B2C application ID}/user_impersonation',
+		logoutUrl: 'https://PhenomenexB2C.b2clogin.com/PhenomenexB2C.onmicrosoft.com/oauth2/v2.0/logout?p=B2C_1_PhxSignUpSignIn',
+		nonceStateSeparator: ',',
+		signUpSignInPolicy: 'B2C_1_PhxSignUpSignIn',
+		passwordResetPolicy: 'B2C_1_PwdReset'
+	}
+	```
+3.	Import required modules and providers to your bootstrapped module (ex: app.module)
+	```ts
+	import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
+	import { CookieModule } from 'ngx-cookie';
+	import { AuthenticationServiceConfig, SsrCookieStorageService } from '@phx/authentication-service';
+	
+	@NgModule({
+		imports: [
+			CookieModule.forRoot(),
+			OAuthModule.forRoot()
+		]
+		providers: [
+			{
+				provide: 'AuthenticationServiceConfig',
+				useValue: <AuthenticationServiceConfig>environment.auth
+			},
+			{
+				provide: OAuthStorage,
+				useClass: SsrCookieStorageService
+			}
+		]
+	})
+	```
+4.	Protect routes that require authentication with the guard:
+	```ts
+	import { AuthenticationGuard } from '@phx/authentication-service';
+	
+	{ path: '[path]', canActivate: [AuthenticationGuard]}
+5.	Prepare the authentication service with the code in your main component (ex: app.component)
+	```ts
+	import { AuthenticationService } from '@phx/authentication-service';
+	
+	export class AppComponent {
+		constructor(authService: AuthenticationService) {
+		
+			// configure & prepare auth
+			authService.configureAuth();
+			authService.isReady();
+		}
+	}
+	```
