@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '@phx/authentication-service';
 
 @Component({
-  selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.sass']
 })

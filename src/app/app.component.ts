@@ -10,6 +10,9 @@ export class AppComponent {
   title = 'Dev Forms project';
 
   constructor(private authService: AuthenticationService) {
+
+    // configure & prepare auth
     authService.configureAuth();
+    authService.isReady();
   }
 }

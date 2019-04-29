@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FirstFormComponent } from './first-form/first-form.component';
 import { HomeComponent } from './home/home.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
@@ -15,14 +14,11 @@ import { ApiModule } from './api/api.module';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AttributesService } from './api/services';
 import { UomsComponent } from './uoms/uoms.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api-interceptor';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
 import { AuthenticationServiceConfig } from '@phx/authentication-service';
-import { CommonModule } from '@angular/common';
-import { TransferHttpCacheModule } from '@nguniversal/common';
-import { NgtUniversalModule } from '@ng-toolkit/universal';
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -33,7 +29,6 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
 @NgModule({
   declarations: [
     AppComponent,
-    FirstFormComponent,
     HomeComponent,
     NavigationComponent,
     NotFoundComponent,
@@ -42,7 +37,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     LoginComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -58,11 +53,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     MatCardModule,
     ReactiveFormsModule,
     OAuthModule.forRoot(),
-    ApiModule.forRoot({ rootUrl: environment.api.rootUrl }),
-    CommonModule,
-    TransferHttpCacheModule,
-    HttpClientModule,
-    NgtUniversalModule
+    ApiModule.forRoot({ rootUrl: environment.api.rootUrl })
   ],
   providers: [
     ApiInterceptor,

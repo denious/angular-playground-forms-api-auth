@@ -14,7 +14,7 @@ export const environment = {
     loginUrl: 'https://PhenomenexB2C.b2clogin.com/PhenomenexB2C.onmicrosoft.com/oauth2/v2.0/authorize',
     redirectUri: window.location.origin,
     onLoginUrl: '/login',
-    onErrorRedirectUrl: '/',
+    onErrorRedirectUrl: '/login',
     silentRefreshRedirectUri: window.location.origin + '/assets/silent-refresh.html',
     clientId: 'f5d45e7e-2f65-41c2-815e-8c9ee003e760',
     scope: 'https://PhenomenexB2C.onmicrosoft.com/f5d45e7e-2f65-41c2-815e-8c9ee003e760/user_impersonation',

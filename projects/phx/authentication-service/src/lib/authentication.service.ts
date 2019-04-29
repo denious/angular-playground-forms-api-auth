@@ -57,31 +57,36 @@ export class AuthenticationService {
           const state = (<string>tokenError.params['state']).split(',');
           const redirectUrl = state.length >= 2 ? state[1] : '/';
 
-          // AADB2C90118: The user has forgotten their password
-          // AADB2C90091: The user has cancelled entering self-asserted information
           switch (errorCode) {
+
+            // AADB2C90118: The user has forgotten their password
             case 'AADB2C90118':
-            case 'AADB2C90091':
               {
                 // switch to the password reset policy
                 this.oauthService.customQueryParams = {
                   'p': this.oauthConfig.passwordResetPolicy
                 };
-                this.router.navigate([this.oauthConfig.onErrorRedirectUrl], {
-                  queryParams: {
-                    callbackUrl: redirectUrl,
-                    errorCode: errorCode
-                  }
-                });
                 break;
               }
 
             default: {
 
-              // unhandled B2C error
-              throw new Error(errorDescription);
+              // switch to the signin/signup policy
+              this.oauthService.customQueryParams = {
+                'p': this.oauthConfig.signUpSignInPolicy
+              };
+              break;
             }
           }
+
+          // send user back to app for processing
+          this.router.navigate([this.oauthConfig.onErrorRedirectUrl], {
+            queryParams: {
+              callbackUrl: redirectUrl,
+              errorCode: errorCode
+            }
+          });
+
           break;
         }
       }
