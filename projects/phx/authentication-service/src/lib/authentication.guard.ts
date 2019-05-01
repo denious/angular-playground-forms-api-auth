@@ -20,7 +20,7 @@ export class AuthenticationGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (!this.authService.hasValidAccessToken()) {
-      const callbackUrl = state.url;
+      const callbackUrl = next.queryParams['callbackUrl'] || state.url;
       this.authService.initImplicitFlow(callbackUrl);
 
       return false;

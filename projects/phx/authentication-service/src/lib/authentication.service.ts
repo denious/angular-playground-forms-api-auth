@@ -4,9 +4,7 @@ import { Injectable, Inject } from '@angular/core';
 import { AuthenticationServiceConfig } from './authentication.service.config';
 import { AuthenticationIdentity } from './authentication.identity';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class AuthenticationService {
   oauthConfig: AuthenticationServiceConfig;
 
