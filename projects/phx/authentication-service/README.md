@@ -5,7 +5,6 @@
 		issuer: 'https://phenomenexb2c.b2clogin.com/964b7d74-24a3-4446-9a32-5c58d965b7b2/v2.0/',
 		loginUrl: 'https://PhenomenexB2C.b2clogin.com/PhenomenexB2C.onmicrosoft.com/oauth2/v2.0/authorize',
 		redirectUri: 'http://localhost:4200',
-		onLoginUrl: '/login',
 		onErrorRedirectUrl: '/',
 		silentRefreshRedirectUri: 'http://localhost:4200/assets/silent-refresh.html',
 		clientId: '{B2C application ID}',

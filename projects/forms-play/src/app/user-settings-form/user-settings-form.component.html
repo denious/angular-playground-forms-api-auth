@@ -1,0 +1,75 @@
+<div class="container">
+  <h2>User Settings</h2>
+  <form #userSettingsForm="ngForm"
+        (ngSubmit)="onFormSubmit(userSettingsForm)">
+    <div class="form-group">
+      <label for="txtName">Name</label>
+      <input id="txtName"
+             name="txtName"
+             type="text"
+             placeholder="Name"
+             class="form-control"
+             [(ngModel)]="userSettingsModel.txtName">
+    </div>
+    <div class="form-check form-group">
+      <label class="form-check-label">
+        <input type="checkbox"
+               class="form-check-input"
+               name="chkNews"
+               id="chkNews"
+               [(ngModel)]="userSettingsModel.chkNews">
+        I want to receive newsletters!
+      </label>
+    </div>
+    <h4>Gender</h4>
+    <div class="form-group">
+      <div class="input-group">
+        <span class="input-group-addon">
+          <input type="radio"
+                 name="radSex"
+                 id="radMale"
+                 aria-label="Male"
+                 value="male"
+                 [(ngModel)]="userSettingsModel.radSex">
+        </span>
+        <label for="radMale">Male</label>
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <input type="radio"
+                 name="radSex"
+                 id="radFemale"
+                 aria-label="Female"
+                 value="female"
+                 [(ngModel)]="userSettingsModel.radSex">
+        </span>
+        <label for="radFemale">Female</label>
+      </div>
+    </div>
+    <h4>You are here because</h4>
+    <div class="form-group">
+      <div class="form-group">
+        <select class="form-control"
+                name="selBecause"
+                id="selBecause"
+                [(ngModel)]="userSettingsModel.selBecause">
+          <option>I am learning Angular</option>
+          <option>Someone is showing me this</option>
+          <option>I don't know</option>
+        </select>
+      </div>
+    </div>
+    <h4>Tell us about yourself</h4>
+    <div class="form-group">
+      <div class="form-group">
+        <textarea class="form-control"
+                  name="txtAboutMe"
+                  id="txtAboutMe"
+                  rows="3"
+                  [(ngModel)]="userSettingsModel.txtAboutMe"></textarea>
+      </div>
+    </div>
+    <button class="btn btn-primary"
+            type="submit">Ok</button>
+  </form>
+</div>

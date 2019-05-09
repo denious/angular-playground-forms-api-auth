@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o --port 4200",
+    "start": "ng serve -o",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "forms": "ng serve forms-play -o"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "@angular/platform-browser-dynamic": "~7.2.0",
     "@angular/router": "~7.2.0",
     "angular-oauth2-oidc": "^5.0.2",
+    "bootstrap": "4.2.1",
     "core-js": "^2.5.4",
+    "ngx-bootstrap": "^4.1.1",
     "ngx-cookie": "^4.1.2",
     "rxjs": "~6.3.3",
     "tslib": "^1.9.0",
