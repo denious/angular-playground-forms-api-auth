@@ -38,7 +38,10 @@ export class AuthenticationService {
 
           // redirect user to originally requested URL
           if (this.oauthService.state)
+          {
+            debugger;
             this.router.navigate([this.oauthService.state]);
+          }
 
           break;
         }
