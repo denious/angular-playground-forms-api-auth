@@ -18,7 +18,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './api-interceptor';
 import { LoginComponent } from './login/login.component';
 import { environment } from '../environments/environment';
-import { AuthenticationServiceConfig } from '@phx/authentication-service';
+import { AuthenticationService, AuthenticationServiceConfig } from '@phx/authentication-service';
 
 export const API_INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -59,6 +59,7 @@ export const API_INTERCEPTOR_PROVIDER: Provider = {
     ApiInterceptor,
     API_INTERCEPTOR_PROVIDER,
     AttributesService,
+    AuthenticationService,
     {
       provide: 'AuthenticationServiceConfig',
       useValue: <AuthenticationServiceConfig>environment.auth
